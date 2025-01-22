@@ -1,0 +1,35 @@
+//
+//  AstronautView.swift
+//  project-8
+//
+//  Created by Maciej Wiącek on 14/01/2025.
+//
+
+import SwiftUI
+
+struct AstronautView: View {
+    let astronaut: Astronaut
+    
+    var body: some View {
+        ScrollView {
+            VStack {
+                Image(astronaut.id)
+                    .resizable()
+                    .scaledToFit()
+                
+                Text(astronaut.description)
+                    .padding()
+            }
+        }
+        .background(.darkBackground)
+        .navigationTitle(astronaut.name)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+#Preview {
+    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
+    
+    AstronautView(astronaut: astronauts["aldrin"]!)
+        .preferredColorScheme(.dark)
+}

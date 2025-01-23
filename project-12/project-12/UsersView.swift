@@ -1,0 +1,60 @@
+//
+//  UsersView.swift
+//  project-12
+//
+//  Created by Maciej Wiącek on 23/01/2025.
+//
+
+import SwiftData
+import SwiftUI
+
+struct UsersView: View {
+    // We create a Query for User (and its relationships)
+    @Query var users: [User]
+    @Environment(\.modelContext) var modelContext
+    
+    var body: some View {
+        List(users) { user in
+            HStack {
+                Text(user.name)
+                
+                Spacer()
+                
+                Text(String(user.jobs.count))
+                    .fontWeight(.black)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(.blue)
+                    .foregroundStyle(.white)
+                    .clipShape(.capsule)
+            }
+        }
+        .onAppear(perform: addSample)
+    }
+    
+    // We initialize our View with two parameters, to dynamically create our Query:
+    // - minimumJoinDate -> we use it to filter our data
+    // - sortOrder -> takes SortDescriptors array, to sort our data
+    init(minimumJoinDate: Date, sortOrder: [SortDescriptor<User>]) {
+        // _users = we don't want to change users array, but underlying SwiftData Query, by using _ we access a Query
+        _users = Query(filter: #Predicate<User> { user in
+            user.joinDate >= minimumJoinDate
+        }, sort: sortOrder)
+    }
+    
+    func addSample() {
+        let user1 = User(name: "Piper Chapman", city: "New York", joinDate: .now)
+        let job1 = Job(name: "Organize sock drawer", priority: 3)
+        let job2 = Job(name: "Make plans with Alex", priority: 4)
+        
+        modelContext.insert(user1)
+        
+        user1.jobs.append(job1)
+        user1.jobs.append(job2)
+    }
+}
+
+#Preview {
+    UsersView(minimumJoinDate: .now, sortOrder: [SortDescriptor(\User.name)])
+        .modelContainer(for: User.self)
+}

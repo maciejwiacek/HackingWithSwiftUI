@@ -37,13 +37,16 @@ The Hacking with SwiftUI course is an excellent resource for learning SwiftUI, A
 &emsp;With this project we create an app that decodes a JSON file and show its contents to the screen. We work here with Codable protocol and JSONEncoder.
 
 <b>9. Project 9: Navigation</b> <br />
-&emsp;This one is another technical projects, that introduces us to programmatical navigation.
+&emsp;This one is another technical project, that introduces us to programmatical navigation.
 
 <b>10. Project 10: Cupcake Corner</b> <br />
 &emsp;In this project we create an app for ordering cupcakes. We learn how to work with JSON data from Internet by encoding our order and sending it to the database and then receiving and decoding it.
 
 <b>11. Project 11: Bookworm</b> <br />
-&emsp;This project is about the basics of SwiftData. We create here a book review app. We create a Model of a Book and save it to a container.
+&emsp;This project is about the introduction of SwiftData. We create here a book review app. We create a Model of a Book and save it to a container.
+
+<b>12. Project 12: SwiftData</b> <br />
+&emsp;This one is another technical project, that shows basic of SwiftData, such as working with modelContext, relationships and syncing it with iCloud using CloudKit.
 
 ## Skills Developed
 - Mastery of SwiftUI basics, including views, modifiers, and layout techniques.
